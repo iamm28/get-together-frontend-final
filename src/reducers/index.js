@@ -13,7 +13,7 @@
 //navbar, login, sign up, profile
 
 //42509915301
-export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, eventFilters: {location: "", categories: [], date: undefined}}, action) {
+export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, eventFilters: {city: "", region:"", category_ids: [], date: undefined, price: ""}}, action) {
   switch (action.type) {
     case "EVENTS_LOADING":
       return {

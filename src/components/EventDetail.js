@@ -12,7 +12,7 @@ const EventDetail = (props) => {
     const timeInfo = formatDateAndTime(props)
     return (
       <div>
-        <img src={`${props.eventDetails.logo.original.url}`} style={{height: "200px"}}></img>
+        {(props.eventDetails.logo !== null) ? <img src={`${props.eventDetails.logo.original.url}`} style={{height: "200px"}}></img> : null}
         <h2 dangerouslySetInnerHTML={{ __html: props.eventDetails.name.html }} />
         <h3>{timeInfo.dates}</h3>
         <h3>{timeInfo.start_time} - {timeInfo.end_time}</h3>
@@ -65,6 +65,7 @@ const EventDetail = (props) => {
 }
 
 export default EventDetail
+//<img src={`${props.eventDetails.logo.original.url}`} style={{height: "200px"}}></img>
 // <p>{props.eventDetails.description.text}</p>
 // <div dangerouslySetInnerHTML={{ __html: props.eventDetails.name.html }} />
 // <div dangerouslySetInnerHTML={{ __html: props.eventDetails.description.html }} />

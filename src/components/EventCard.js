@@ -1,8 +1,6 @@
 import React from 'react'
-import {EB_KEY} from '../secrets'
 import { connect } from 'react-redux';
 import { fetchGetEventDetails } from '../actions'
-
 import EventDetail from './EventDetail'
 
 class EventCard extends React.Component {
