@@ -10,7 +10,11 @@ import EventTinder from './EventTinder'
 
 
 class MainContainer extends Component {
-
+  // state = {
+  //   events: []
+  // }
+  //getEvents () =
+  //auth: { currentUser: null }
   render() {
     return (
       <Switch>
