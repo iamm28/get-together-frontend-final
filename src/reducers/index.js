@@ -11,6 +11,16 @@ export function eventsReducer(state = {events_attending: [], eventDetails: [], l
         loading: false,
         events_attending: [...action.payload]
       };
+    case "UPDATE_EVENTS_ATTENDING":
+      return {
+        ...state,
+        events_attending: [...state.events_attending, action.payload]
+      }
+    case "UPDATE_EVENT_DETAILS":
+      return {
+        ...state,
+        eventDetails: [...state.eventDetails, action.payload]
+      }
     case "EVENT_DETAILS":
       return {
         ...state,

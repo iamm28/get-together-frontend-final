@@ -18,3 +18,25 @@ export function fetchGetEventDetails(eb_id) {
       .then(jsonData => { dispatch({type:"EVENT_DETAILS", payload: jsonData})})
   }
 }
+
+export function updateEventsAttending(body) {
+  return dispatch => {
+    //find or create event in backend
+    RestfulAdapter.createFetch("events", body).then(eventData => {
+      dispatch({type:"UPDATE_EVENTS_ATTENDING", payload: eventData.eventbrite_id})
+      // RestfulAdapter.createFetch("groups", {event_id: eventData.id}).then( groupData => {
+      //   RestfulAdapter.createFetch("user-groups", {group_id: groupData.id, user_id: user_id})
+      // })
+    })
+  }
+  //make needed reducers
+  //check home page to see if new event shows up on list
+}
+
+export function updateEventsDetails(eb_id) {
+  return dispatch => {
+    fetch(`https://www.eventbriteapi.com/v3/events/${eb_id}/?token=${EB_KEY}&expand=venue`)
+      .then(res => res.json())
+      .then(jsonData => { dispatch({type:"UPDATE_EVENT_DETAILS", payload: jsonData})})
+  }
+}

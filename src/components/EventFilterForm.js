@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateForm } from '../actions'
+import { updateEventsAttending, updateEventsDetails } from '../actions'
 import {EB_KEY} from '../secrets'
 import EventDetail from './EventDetail'
 
@@ -19,8 +19,34 @@ class EventFilterForm extends React.Component {
   //   this.state.filteredEvents.select
   // }
 
+  handleYes() {
+    this.props.updateEventsAttending({eventbrite_id: this.getCurrentEvent().id})
+    this.props.updateEventsDetails(this.getCurrentEvent().id)
+    this.showNextEvent()
+  }
+
+  handleNo() {
+    this.showNextEvent()
+  }
+
+  handleRSVP = (event) => {
+    if (event.target.value ==="YES") {
+      this.handleYes()
+    } else {
+      this.handleNo()
+    }
+    //rsvp yes create ug and possibly g and e (find or create) fetch post
+    //response eb_id and action to add that to events_attending
+  }
+
   getCurrentEvent() {
     return this.state.filteredEvents[this.state.index]
+  }
+
+  showNextEvent() {
+    this.setState({
+      index: this.state.index + 1
+    })
   }
 
   handleSubmit = (event) => {
@@ -76,7 +102,7 @@ class EventFilterForm extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props,this.state.events_attending)
     return (
       <div>
         <h3>Event Filter Form</h3>
@@ -102,19 +128,21 @@ class EventFilterForm extends React.Component {
         {<EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/>}
         <div>
           <h3>Event RSVP</h3>
-          <button style={Yes}>YES</button>
-          <button style={No}>NO</button>
+          <button value="YES" onClick={this.handleRSVP} style={Yes}>YES</button>
+          <button value="NO" onClick={this.handleRSVP} style={No}>NO</button>
         </div>
       </div>
     )
   }
 }
-//rsvp yes create ug and possibly g and e (find or create) fetch post
-//response eb_id and action to add that to events_attending
-//event handler dispatch an action and go to next event
-//rvsp no event handler go to next event
 
-export default EventFilterForm
+function mapStateToProps(state) {
+  return {
+    events_attending: state.events_attending
+  }
+}
+
+export default connect(mapStateToProps, { updateEventsAttending, updateEventsDetails })(EventFilterForm)
 
 const Yes = {
   padding: '12px',
