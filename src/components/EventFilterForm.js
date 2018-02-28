@@ -15,8 +15,12 @@ class EventFilterForm extends React.Component {
     index: 0
   }
 
+  // getEventsUserHasNotSeen() {
+  //   this.state.filteredEvents.select
+  // }
+
   getCurrentEvent() {
-    this.state.filteredEvents[this.state.index]
+    return this.state.filteredEvents[this.state.index]
   }
 
   handleSubmit = (event) => {
@@ -95,57 +99,34 @@ class EventFilterForm extends React.Component {
           <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="101"/>Networking<br/>
           <input type="submit" onClick={this.handleSubmit}/>
         </form>
-        {this.state.filteredEvents.map((e) => {return <EventDetail key={e.id} eventDetails={e}/>})}
+        {<EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/>}
+        <div>
+          <h3>Event RSVP</h3>
+          <button style={Yes}>YES</button>
+          <button style={No}>NO</button>
+        </div>
       </div>
     )
   }
-
 }
+//rsvp yes create ug and possibly g and e (find or create) fetch post
+//response eb_id and action to add that to events_attending
+//event handler dispatch an action and go to next event
+//rvsp no event handler go to next event
 
-// function mapStateToProps(state) {
-//   return {
-//     eventFilters: state.eventFilters
-//   }
-// }
 export default EventFilterForm
-//export default connect(null, { updateForm })(EventFilterForm)
 
-// value={this.props.eventFilters.city}
-// value={this.props.eventFilters.region}
-// value={this.props.eventFilters.date}
-// value={this.props.eventFilters.price}
-
-// handleChangeLocation = (event) => { //city, state (city,region)
-//   this.props.updateForm(event.target)
-// }
-//
-// handleChangeDate = (event) => {
-//   this.props.updateForm(event.target)
-// }
-//
-// handleChangeFreeOnly = (event) => {
-//   if (event.target.checked) {
-//     this.props.updateForm(true)
-//   } else {
-//     this.props.updateForm(false)
-//   }
-// }
-//
-// handleChangeCategories = (event) => {
-//   //deal with updating if checked or not
-//   if (event.target.checked) {
-//     this.props.updateForm(event.target)
-//   } //else {
-//   //   this.props.updateForm(event.target)
-//   // }
-// }
-
-// <select>
-//   <option value="music">Music</option> id=103
-//   <option value="food-and-drink">Food & Drink</option> id=110
-//   <option value="classes">Classes</option> ??
-//   <option value="arts">Arts</option> id=105, 104
-//   <option value="parties">Parties</option> ??
-//   <option value="sports-and-fitness">Sports & Wellness</option> id=108, id=107
-//   <option value="networking">Networking</option> id=101
-// </select>
+const Yes = {
+  padding: '12px',
+  margin: '0 6px 6px',
+  background: 'green',
+  textDecoration: 'none',
+  color: 'white',
+}
+const No = {
+  padding: '12px',
+  margin: '0 6px 6px',
+  background: 'red',
+  textDecoration: 'none',
+  color: 'white',
+}

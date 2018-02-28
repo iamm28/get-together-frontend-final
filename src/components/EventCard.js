@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { fetchGetEventDetails } from '../actions'
 import EventDetail from './EventDetail'
 
+//set up match eb_id to event details id to render each one instead of using index
 class EventCard extends React.Component {
   componentDidMount() {
     this.props.fetchGetEventDetails(this.props.eb_id)
   }
 
   render() {
-    //console.log(this.props.eb_id)
+    //console.log(this.props)
     return (
       <div className="Event-Card">
         <EventDetail key={this.props.eb_id} eventDetails={this.props.eventDetails[this.props.i]} />
@@ -18,10 +19,10 @@ class EventCard extends React.Component {
   }
 }
 
-
 function mapStateToProps(state) {
   return {
-    eventDetails: state.eventDetails
+    eventDetails: state.eventDetails,
+    events_attending: state.events_attending
   }
 }
 

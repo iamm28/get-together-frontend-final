@@ -1,5 +1,3 @@
-
-//Adapters allow us to abstract out repetitive code, such as the base url and headers
 const baseUrl = `http://localhost:3001/api/v1`;
 
 function headers() {
@@ -14,25 +12,19 @@ export class RestfulAdapter {
     return fetch(`${baseUrl}/${route}`, getRequest()).then(res => res.json());
   }
   static showFetch(route, id) {
-    return fetch(`${baseUrl}/${route}/${id}`, getRequest()).then(
-      responseHandler
-    );
+    return fetch(`${baseUrl}/${route}/${id}`, getRequest()).then(res => res.json());
   }
   static createFetch(route, body) {
-    return fetch(`${baseUrl}/${route}`, postRequest(body)).then(
-      responseHandler
-    );
+    return fetch(`${baseUrl}/${route}`, postRequest(body)).then(res => res.json());
   }
   static editFetch(route, id, body) {
-    return fetch(`${baseUrl}/${route}/${id}`, patchRequest(body)).then(
-      responseHandler
-    );
+    return fetch(`${baseUrl}/${route}/${id}`, patchRequest(body)).then(res => res.json());
   }
   static deleteFetch(route, id) {
     return fetch(`${baseUrl}/${route}/${id}`, {
       method: "DELETE",
       headers: headers()
-    }).then(responseHandler);
+    }).then(res => res.json());
   }
 }
 
@@ -71,3 +63,10 @@ function responseHandler(response) {
     }
   };
 }
+
+//Adapters allow us to abstract out repetitive code, such as the base url and headers
+//using thunk, we return are returning a function here instead of
+//a plain object.  Thunk intercepts this returned value, and if it is a
+//function, cancels the normal event of calling our reducers, and
+//instead, passes in 'dispatch' as an argument to the function.
+//the fetch request was extracted out to our adapter, but still functions the same

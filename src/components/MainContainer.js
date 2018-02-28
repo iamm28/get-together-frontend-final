@@ -7,14 +7,7 @@ import ProfileContainer from './ProfileContainer'
 import HomeContainer from './HomeContainer'
 import EventTinder from './EventTinder'
 
-
-
 class MainContainer extends Component {
-  // state = {
-  //   events: []
-  // }
-  //getEvents () =
-  //auth: { currentUser: null }
   render() {
     return (
       <Switch>

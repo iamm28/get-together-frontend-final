@@ -1,14 +1,12 @@
 import React from 'react'
-
 import GroupDetail from './GroupDetail'
-
 
 const EventDetail = (props) => {
   //console.log(props)
   if (!props.eventDetails) {
     return null
   } else {
-    console.log(props.eventDetails)
+    //console.log(props.eventDetails)
     const timeInfo = formatDateAndTime(props)
     return (
       <div>
@@ -61,10 +59,11 @@ const EventDetail = (props) => {
     }
     return {dates, start_time, end_time}
   }
-
 }
 
 export default EventDetail
+
+
 //<img src={`${props.eventDetails.logo.original.url}`} style={{height: "200px"}}></img>
 // <p>{props.eventDetails.description.text}</p>
 // <div dangerouslySetInnerHTML={{ __html: props.eventDetails.name.html }} />
