@@ -15,9 +15,36 @@ class EventFilterForm extends React.Component {
     index: 0
   }
 
-  // getEventsUserHasNotSeen() {
-  //   this.state.filteredEvents.select
-  // }
+  getEventsUserHasNotSeen() {
+    //debugger
+    const moreFiltered = this.state.filteredEvents.filter(event => {return !this.props.events_attentding.includes(parseInt(event.id))})
+    //console.log(moreFiltered)
+    this.setState({
+      filteredEvents: moreFiltered
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&price=${this.state.price}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
+      .then(res => res.json())
+      .then(jsonData => {
+        this.setState({filteredEvents: [...jsonData.events]})
+        //this.getEventsUserHasNotSeen()
+      })
+  }
+
+  getCurrentEvent() {
+    return this.state.filteredEvents[this.state.index]
+  }
+
+  handleRSVP = (event) => {
+    if (event.target.value ==="YES") {
+      this.handleYes()
+    } else {
+      this.handleNo()
+    }
+  }
 
   handleYes() {
     this.props.updateEventsAttending({eventbrite_id: this.getCurrentEvent().id})
@@ -29,32 +56,10 @@ class EventFilterForm extends React.Component {
     this.showNextEvent()
   }
 
-  handleRSVP = (event) => {
-    if (event.target.value ==="YES") {
-      this.handleYes()
-    } else {
-      this.handleNo()
-    }
-    //rsvp yes create ug and possibly g and e (find or create) fetch post
-    //response eb_id and action to add that to events_attending
-  }
-
-  getCurrentEvent() {
-    return this.state.filteredEvents[this.state.index]
-  }
-
   showNextEvent() {
     this.setState({
       index: this.state.index + 1
     })
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault()
-    //this.props.updateForm(this.state)
-    fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&price=${this.state.price}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
-      .then(res => res.json())
-      .then(jsonData=> this.setState({filteredEvents: [...jsonData.events]}))
   }
 
   handleChangeCity = (event) => {

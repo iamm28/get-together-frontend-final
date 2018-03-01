@@ -1,4 +1,4 @@
-export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, user_id: undefined}, action) {
+export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, user_info:{}, user_id: undefined}, action) {
   switch (action.type) {
     case "ACCOUNT_LOADING":
       return {
@@ -29,7 +29,8 @@ export function eventsReducer(state = {events_attending: [], eventDetails: [], l
     case 'ADD_USER':
       return {
         ...state,
-        user_id: action.payload
+        user_info: action.payload.user,
+        user_id: action.payload.user.id
       }
     default:
       return state;

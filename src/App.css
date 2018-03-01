@@ -1,27 +1,24 @@
-.App {
+/* colors 71AA97 478D76 267158 0E553E 003926 */
+
+/* -------other-------- */
+body {
+  background-color: #267158;
+  font-family: 'Poppins';
+}
+
+/* -------profile page-------- */
+.profile-name {
+  font-family: 'Poppins';
+  font-size: 24px;
+  color: #333333;
+  line-height: 1.2;
   text-align: center;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  width: 100%;
+  display: block;
+  padding-bottom: 54px;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
+/* ----- home and find events ------*/
 .Event-List {
   display:grid;
   grid-template-columns: repeat(2, 1fr);
@@ -35,7 +32,197 @@
   height: 500px;
 }
 
+/* ----- logo ------*/
+.App-logo-bounce {
+  height: 300px;
+  animation-name: bounceIn;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  margin-top: 100px;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ----- login page ------*/
+.login100-form {
+  width: 350px;
+}
+
+.wrap-input100 {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.input100 {
+  font-family: 'Poppins';
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+
+  display: block;
+  width: 100%;
+  background: #e6e6e6;
+  height: 50px;
+  border-radius: 25px;
+  border-color: #71AA97;
+  padding: 0 30px 0 68px;
+}
+
+.focus-input100 {
+  display: block;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  color: rgba(87,184,70, 0.8);
+}
+
+.symbol-input100 {
+  font-size: 15px;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 35px;
+  pointer-events: none;
+  color: #666666;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.input100:focus + .focus-input100 + .symbol-input100 {
+  color: #267158;
+  padding-left: 28px;
+}
+
+.input100-submit {
+  font-family: 'Poppins';
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+
+  display: block;
+  width: 100%;
+  background: #267158;
+  height: 50px;
+  border-radius: 25px;
+  border-color: #71AA97;
+  padding: 0 20px 0 68px;
+}
+
+.login100-form-submit {
+  font-family: 'Poppins';
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+
+  width: 300px;
+  height: 50px;
+  border-radius: 25px;
+  border-color: #71AA97;
+  background: #003926;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-submit:hover {
+  background: #333333;
+}
+
+/* --------placement------- */
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.right {
+  float: right
+}
+
+.left {
+  float: left
+}
+
+/* --------navbar------- */
+#navbar {
+  background: #71AA97;
+  padding: 12px;
+}
+
+.nav-link {
+  margin-left: 6px;
+  margin-right: 6px;
+  color: #0E553E;
+}
+
+/* --------------- */
+
+/* .App {
+  text-align: center;
+}
+
+.App-header {
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+@keyframes App-logo-zoom-out {
+  from { transform: scale(1.5,1.5); }
+  to { transform: scale(1,1); }
+} */

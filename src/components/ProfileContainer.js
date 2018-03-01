@@ -6,7 +6,6 @@ import UserEditForm from './UserEditForm'
 const ProfileContainer = (props) => {
   return (
     <div>
-      <h3>Profile Container</h3>
       <UserInfo />
       <UserEditForm />
     </div>

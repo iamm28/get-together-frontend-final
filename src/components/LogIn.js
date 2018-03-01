@@ -27,26 +27,34 @@ class LogIn extends React.Component {
       return <Redirect exact from="/login" to="/home" />
     } else {
       return (
-        <div>
-          <h3>Log In</h3>
-          {this.state.error ? <h3>Email or Password Incorrect</h3> : null}
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input type="text" name="email" placeholder="email" onChange={this.handleChange} value={this.state.email}/>
+        <div className="login-page">
+          <img src={require("../imgs/gettogethersc.png")} className="App-logo-bounce center"/>
+          {this.state.error ? <h3 className="login100-form-title">Email or Password Incorrect</h3> : null}
+          <form onSubmit={this.handleSubmit} className="login100-form center">
+            <div className="wrap-input100">
+              <input className="input100" type="text" name="email" placeholder="Email" onChange={this.handleChange} value={this.state.email}/>
+              <span className="focus-input100"></span>
+    					<span className="symbol-input100">
+    						<i className="fa fa-envelope" aria-hidden="true"></i>
+    					</span>
             </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password}/>
+            <div className="wrap-input100">
+              <input className="input100" type="password" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password}/>
+              <span className="focus-input100"></span>
+    					<span className="symbol-input100">
+    						<i className="fa fa-lock" aria-hidden="true"></i>
+    					</span>
             </div>
-            <input type="submit" value="Login" />
+            <div className="input100-submit">
+              <input className=" input100 login100-form-submit" type="submit" value="Login" />
+            </div>
           </form>
         </div>
       )
     }
-
   }
 }
+
 function mapStateToProps(state) {
   return {
     user_id: state.user_id
