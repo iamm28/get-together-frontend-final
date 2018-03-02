@@ -46,7 +46,7 @@ class LogIn extends React.Component {
     					</span>
             </div>
             <div className="input100-submit">
-              <input className=" input100 login100-form-submit" type="submit" value="Login" />
+              <input className="input100 login100-form-submit" type="submit" value="Login" />
             </div>
           </form>
         </div>

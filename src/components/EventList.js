@@ -9,8 +9,11 @@ class EventList extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <div className="Event-List">
-        {this.props.events_attending.map((e,i) => {return <EventCard i={i} key={e} eb_id={e}/>})}
+      <div>
+        <h1>Your Events</h1>
+        <div className="Event-List">
+          {this.props.events_attending.map((e,i) => {return <EventCard i={i} key={e} eb_id={e}/>})}
+        </div>
       </div>
     )
   }

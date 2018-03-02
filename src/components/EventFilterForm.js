@@ -107,35 +107,69 @@ class EventFilterForm extends React.Component {
   }
 
   render() {
-    console.log(this.props,this.state.events_attending)
+    //console.log(this.props,this.state.events_attending)
     return (
-      <div>
-        <h3>Event Filter Form</h3>
+      <div className="event-tinder">
         <form>
-          <label>City</label>
-          <input type="text" name="city" onChange={this.handleChangeCity}/><br/>
-          <label>State</label>
-          <input type="text" name="region" onChange={this.handleChangeRegion}/><br/>
-          <label>Date</label>
-          <input type="date" name="date" onChange={this.handleChangeDate}/><br/>
-          <input type="checkbox" name="price" onChange={this.handleChangePrice}/><label>Free Events Only</label><br/>
-          <label>Categories</label><br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/>Travel & Outdoor<br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="110"/>Food & Drink<br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="103"/>Music<br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="105"/>Performing & Visual Arts<br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="104"/>Film, Media & Entertainment<br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="108"/>Sports & Fitness<br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="107"/>Health & Wellness<br/>
-          <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="101"/>Networking<br/>
-          <input type="submit" onClick={this.handleSubmit}/>
+          <div id="write-in">
+            <h2>Find Events</h2>
+            <input className="input100" type="text" name="city" placeholder="City" onChange={this.handleChangeCity}/><br/>
+            <input className="input100" type="text" name="region" placeholder="State" onChange={this.handleChangeRegion}/><br/>
+            <input className="input100" type="date" name="date" placeholder="Date" onChange={this.handleChangeDate}/><br/>
+          </div>
+          <section id="free-events-only">
+            <p>Free Events Only</p>
+            <div className="slide">
+              <input id="slide1" type="checkbox" name="price" onChange={this.handleChangePrice}/><label htmlFor="slide1"></label>
+            </div>
+          </section>
+          <h3 className="categories">Categories</h3>
+          <section id="categories">
+            <p>Travel & Outdoor</p>
+            <div className="slide">
+              <input id="slide2" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/><label htmlFor="slide2"></label>
+            </div>
+            <p>Food & Drink</p>
+            <div className="slide">
+              <input id="slide3" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="110"/><label htmlFor="slide3"></label>
+            </div>
+            <p>Music</p>
+            <div className="slide">
+              <input id="slide4" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="103"/><label htmlFor="slide4"></label>
+            </div>
+            <p>Performing & Visual Arts</p>
+            <div className="slide">
+              <input id="slide5" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="105"/><label htmlFor="slide5"></label>
+            </div>
+            <p>Film, Media & Entertainment</p>
+            <div className="slide">
+              <input id="slide6" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="104"/><label htmlFor="slide6"></label>
+            </div>
+            <p>Sports & Fitness</p>
+            <div className="slide">
+              <input id="slide7" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="108"/><label htmlFor="slide7"></label>
+            </div>
+            <p>Health & Wellness</p>
+            <div className="slide">
+              <input id="slide8" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="107"/><label htmlFor="slide8"></label>
+            </div>
+            <p>Networking</p>
+            <div className="slide">
+              <input id="slide9" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="101"/><label htmlFor="slide9"></label>
+            </div>
+            <div className="input100-submit">
+              <input className="input100 login100-form-submit" type="submit" onClick={this.handleSubmit}/>
+            </div>
+          </section>
         </form>
         {<EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/>}
-        <div>
-          <h3>Event RSVP</h3>
-          <button value="YES" onClick={this.handleRSVP} style={Yes}>YES</button>
-          <button value="NO" onClick={this.handleRSVP} style={No}>NO</button>
-        </div>
+        {this.state.filteredEvents.length ?
+          <div>
+            <h3>Event RSVP</h3>
+            <button value="YES" onClick={this.handleRSVP} style={Yes}>YES</button>
+            <button value="NO" onClick={this.handleRSVP} style={No}>NO</button>
+          </div>
+        : null}
       </div>
     )
   }
@@ -163,3 +197,12 @@ const No = {
   textDecoration: 'none',
   color: 'white',
 }
+
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/>Travel & Outdoor<br/>
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="110"/>Food & Drink<br/>
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="103"/>Music<br/>
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="105"/>Performing & Visual Arts<br/>
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="104"/>Film, Media & Entertainment<br/>
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="108"/>Sports & Fitness<br/>
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="107"/>Health & Wellness<br/>
+// <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="101"/>Networking<br/>
