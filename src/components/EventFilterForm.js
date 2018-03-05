@@ -6,30 +6,48 @@ import EventDetail from './EventDetail'
 
 class EventFilterForm extends React.Component {
   state = {
-    city: undefined,
-    region: undefined,
+    city: this.props.user_info.city,
+    region: this.props.user_info.state,
     category_ids:[],
-    price: "paid",
-    date: undefined,
-    filteredEvents: [],
+    price: undefined,
+    date: "2018-03-31",
+    filteredEvents: undefined,
     index: 0
   }
 
   getEventsUserHasNotSeen(data) {
-    return data.events.filter(event => !this.props.rsvps.includes(parseInt(event.id))) //maybe rsvps was string not int
+    if (data.events) {
+      return data.events.filter(event => !this.props.rsvps.includes(parseInt(event.id)))
+    }
   }
 
+  // function validateForm() {
+  //   var x = document.forms["myForm"]["fname"].value;
+  //   if (x == "") {
+  //     alert("Name must be filled out");
+  //     return false;
+  //   }
+  // }
   handleSubmit = (event) => {
+    event.preventDefault()
     this.setState({
       index: 0
     })
-    event.preventDefault()
-    fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&price=${this.state.price}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
+    if (this.state.price) {
+      fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&price=${this.state.price}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
       .then(res => res.json())
       .then(jsonData => {
         this.setState({
           filteredEvents: this.getEventsUserHasNotSeen(jsonData)})
       })
+    } else {
+      fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
+        .then(res => res.json())
+        .then(jsonData => {
+          this.setState({
+            filteredEvents: this.getEventsUserHasNotSeen(jsonData)})
+        })
+    }
   }
 
   getCurrentEvent() {
@@ -87,7 +105,7 @@ class EventFilterForm extends React.Component {
       })
     } else {
       this.setState({
-        price: "paid"
+        price: undefined
       })
     }
   }
@@ -113,9 +131,9 @@ class EventFilterForm extends React.Component {
         <form>
           <div id="write-in">
             <h2>Find Events</h2>
-            <input className="input100" type="text" name="city" placeholder="City" onChange={this.handleChangeCity}/><br/>
-            <input className="input100" type="text" name="region" placeholder="State" onChange={this.handleChangeRegion}/><br/>
-            <input className="input100" type="date" name="date" placeholder="Date" onChange={this.handleChangeDate}/><br/>
+            <input className="input100" type="text" name="city" placeholder="City" value={`${this.state.city}`} onChange={this.handleChangeCity}/><br/>
+            <input className="input100" type="text" name="region" placeholder="State" value={`${this.state.region}`} onChange={this.handleChangeRegion}/><br/>
+            <input className="input100" type="date" name="date" placeholder="Date" value={`${this.state.date}`} onChange={this.handleChangeDate}/><br/>
           </div>
           <section id="free-events-only">
             <p>Free Events Only</p>
@@ -162,14 +180,19 @@ class EventFilterForm extends React.Component {
             </div>
           </section>
         </form>
-        {<EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/>}
-        {this.state.filteredEvents.length ?
+        {Array.isArray(this.state.filteredEvents) ?
           <div>
+            {(this.state.filteredEvents.length === 0) ? <h2>We could not find any events that match your search. Please try searching something different.</h2> : <EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/>}
+            {(this.state.filteredEvents.length === this.state.index && this.state.filteredEvents.length > 0) ? <h2>We could not find any more events that match your search. Please try searching something different.</h2> : null}
+            {(this.state.filteredEvents.length !== 0 && this.state.filteredEvents.length > this.state.index) ?
+            <div>
             <h3>Event RSVP</h3>
-            <button value="YES" onClick={this.handleRSVP} style={Yes}>YES</button>
-            <button value="NO" onClick={this.handleRSVP} style={No}>NO</button>
+              <button value="YES" onClick={this.handleRSVP} style={Yes}>YES</button>
+              <button value="NO" onClick={this.handleRSVP} style={No}>NO</button>
+            </div> : null}
           </div>
-        : null}
+          : null}
+
       </div>
     )
   }
@@ -199,6 +222,7 @@ const No = {
   color: 'white',
 }
 
+//typeof this.state.filteredEvents !=='string' &
 // <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/>Travel & Outdoor<br/>
 // <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="110"/>Food & Drink<br/>
 // <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="103"/>Music<br/>
