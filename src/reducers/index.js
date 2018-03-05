@@ -21,16 +21,6 @@ export function eventsReducer(state = {events_attending: [], eventDetails: [], l
         ...state,
         rsvps: [...state.rsvps, action.payload],
       };
-    case "UPDATE_USER_RSVPS":
-      return {
-        ...state.user_info,
-        Rsvps: [...state.user_info.Rsvps, action.payload]
-      };
-    case "UPDATE_USER_EVENTS":
-      return {
-        ...state.user_info,
-        events: [...state.user_info.events, action.payload]
-      };
     case "UPDATE_EVENTS_ATTENDING":
       return {
         ...state,

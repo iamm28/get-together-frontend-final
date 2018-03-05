@@ -24,7 +24,6 @@ export function updateEventsAttending(body) {
   return dispatch => {
     RestfulAdapter.createFetch("events", body).then(eventData => {
       dispatch({type:"UPDATE_EVENTS_ATTENDING", payload: eventData.eventbrite_id})
-      // dispatch({type: "UPDATE_USER_EVENTS", payload: eventData.eventbrite_id})
     })
   }
 }
@@ -41,7 +40,6 @@ export function createRsvp(body) {
   return dispatch => {
     RestfulAdapter.createFetch("rsvps", body).then(rsvpData => {
       dispatch({type: "UPDATE_RSVPS", payload: rsvpData.eventbrite_id})
-      // dispatch({type: "UPDATE_USER_RSVPS", payload: rsvpData.eventbrite_id})
     })
   }
 }
