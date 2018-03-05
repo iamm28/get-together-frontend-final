@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateEventsAttending, updateEventsDetails } from '../actions'
+import { updateEventsAttending, updateEventsDetails, createRsvp, updateRsvps } from '../actions'
 import {EB_KEY} from '../secrets'
 import EventDetail from './EventDetail'
 
@@ -15,22 +15,20 @@ class EventFilterForm extends React.Component {
     index: 0
   }
 
-  getEventsUserHasNotSeen() {
-    //debugger
-    const moreFiltered = this.state.filteredEvents.filter(event => {return !this.props.events_attentding.includes(parseInt(event.id))})
-    //console.log(moreFiltered)
-    this.setState({
-      filteredEvents: moreFiltered
-    })
+  getEventsUserHasNotSeen(data) {
+    return data.events.filter(event => !this.props.rsvps.includes(parseInt(event.id))) //maybe rsvps was string not int
   }
 
   handleSubmit = (event) => {
+    this.setState({
+      index: 0
+    })
     event.preventDefault()
     fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&price=${this.state.price}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
       .then(res => res.json())
       .then(jsonData => {
-        this.setState({filteredEvents: [...jsonData.events]})
-        //this.getEventsUserHasNotSeen()
+        this.setState({
+          filteredEvents: this.getEventsUserHasNotSeen(jsonData)})
       })
   }
 
@@ -41,7 +39,7 @@ class EventFilterForm extends React.Component {
   handleRSVP = (event) => {
     if (event.target.value ==="YES") {
       this.handleYes()
-    } else {
+    } else if (event.target.value ==="NO"){
       this.handleNo()
     }
   }
@@ -49,10 +47,12 @@ class EventFilterForm extends React.Component {
   handleYes() {
     this.props.updateEventsAttending({eventbrite_id: this.getCurrentEvent().id})
     this.props.updateEventsDetails(this.getCurrentEvent().id)
+    this.props.updateRsvps(this.getCurrentEvent().id)
     this.showNextEvent()
   }
 
   handleNo() {
+    this.props.createRsvp({eventbrite_id: this.getCurrentEvent().id})
     this.showNextEvent()
   }
 
@@ -107,7 +107,7 @@ class EventFilterForm extends React.Component {
   }
 
   render() {
-    //console.log(this.props,this.state.events_attending)
+    console.log(this.props, this.state)
     return (
       <div className="event-tinder">
         <form>
@@ -177,11 +177,12 @@ class EventFilterForm extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    events_attending: state.events_attending
+    user_info: state.user_info,
+    rsvps: state.rsvps
   }
 }
 
-export default connect(mapStateToProps, { updateEventsAttending, updateEventsDetails })(EventFilterForm)
+export default connect(mapStateToProps, { updateEventsAttending, updateEventsDetails, createRsvp, updateRsvps })(EventFilterForm)
 
 const Yes = {
   padding: '12px',

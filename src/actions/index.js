@@ -6,7 +6,8 @@ export function addUser(body) {
     dispatch({ type: "ACCOUNT_LOADING" });
     RestfulAdapter.createFetch("users", body).then(data => {
       dispatch({type:"ADD_USER", payload: data})
-      dispatch({type:"EVENTS_LOAD", payload: data.user.events.map(e => {return e.eventbrite_id})}) //data should be arr eb ids
+      dispatch({type:"EVENTS_LOAD", payload: data.user.events.map(e => {return e.eventbrite_id})})
+      dispatch({type:"RSVPS_LOAD", payload: data.user.Rsvps.map(rsvp => {return rsvp.eventbrite_id})})
     })
   }
 }
@@ -21,16 +22,11 @@ export function fetchGetEventDetails(eb_id) {
 
 export function updateEventsAttending(body) {
   return dispatch => {
-    //find or create event in backend
     RestfulAdapter.createFetch("events", body).then(eventData => {
       dispatch({type:"UPDATE_EVENTS_ATTENDING", payload: eventData.eventbrite_id})
-      // RestfulAdapter.createFetch("groups", {event_id: eventData.id}).then( groupData => {
-      //   RestfulAdapter.createFetch("user-groups", {group_id: groupData.id, user_id: user_id})
-      // })
+      // dispatch({type: "UPDATE_USER_EVENTS", payload: eventData.eventbrite_id})
     })
   }
-  //make needed reducers
-  //check home page to see if new event shows up on list
 }
 
 export function updateEventsDetails(eb_id) {
@@ -38,5 +34,20 @@ export function updateEventsDetails(eb_id) {
     fetch(`https://www.eventbriteapi.com/v3/events/${eb_id}/?token=${EB_KEY}&expand=venue`)
       .then(res => res.json())
       .then(jsonData => { dispatch({type:"UPDATE_EVENT_DETAILS", payload: jsonData})})
+  }
+}
+
+export function createRsvp(body) {
+  return dispatch => {
+    RestfulAdapter.createFetch("rsvps", body).then(rsvpData => {
+      dispatch({type: "UPDATE_RSVPS", payload: rsvpData.eventbrite_id})
+      // dispatch({type: "UPDATE_USER_RSVPS", payload: rsvpData.eventbrite_id})
+    })
+  }
+}
+
+export function updateRsvps(eb_id) {
+  return dispatch => {
+    dispatch({type: "UPDATE_RSVPS", payload: parseInt(eb_id)})
   }
 }

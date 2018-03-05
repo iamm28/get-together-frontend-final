@@ -1,4 +1,4 @@
-export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, user_info:{}, user_id: undefined}, action) {
+export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, rsvps:[], user_info:{}, user_id: undefined}, action) {
   switch (action.type) {
     case "ACCOUNT_LOADING":
       return {
@@ -10,6 +10,26 @@ export function eventsReducer(state = {events_attending: [], eventDetails: [], l
         ...state,
         loading: false,
         events_attending: [...action.payload]
+      };
+    case "RSVPS_LOAD":
+      return {
+        ...state,
+        rsvps: [...action.payload]
+      };
+    case "UPDATE_RSVPS":
+      return {
+        ...state,
+        rsvps: [...state.rsvps, action.payload],
+      };
+    case "UPDATE_USER_RSVPS":
+      return {
+        ...state.user_info,
+        Rsvps: [...state.user_info.Rsvps, action.payload]
+      };
+    case "UPDATE_USER_EVENTS":
+      return {
+        ...state.user_info,
+        events: [...state.user_info.events, action.payload]
       };
     case "UPDATE_EVENTS_ATTENDING":
       return {
