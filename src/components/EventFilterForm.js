@@ -10,7 +10,8 @@ class EventFilterForm extends React.Component {
     region: this.props.user_info.state,
     category_ids:[],
     price: undefined,
-    date: "2018-03-31",
+    date_start: "2018-03-06",
+    date_end: "2018-03-07",
     filteredEvents: undefined,
     index: 0
   }
@@ -21,32 +22,27 @@ class EventFilterForm extends React.Component {
     }
   }
 
-  // function validateForm() {
-  //   var x = document.forms["myForm"]["fname"].value;
-  //   if (x == "") {
-  //     alert("Name must be filled out");
-  //     return false;
-  //   }
-  // }
   handleSubmit = (event) => {
     event.preventDefault()
     this.setState({
       index: 0
     })
-    if (this.state.price) {
-      fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&price=${this.state.price}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
+    if (this.state.price && this.state.city && this.state.region && this.state.date_start && this.state.date_end) {
+      fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&price=${this.state.price}&start_date.range_start=${this.state.date_start}T01%3A00%3A00Z&start_date.range_end=${this.state.date_end}T23%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
       .then(res => res.json())
       .then(jsonData => {
         this.setState({
           filteredEvents: this.getEventsUserHasNotSeen(jsonData)})
       })
-    } else {
-      fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&start_date.range_start=${this.state.date}T01%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
+    } else if(this.state.city && this.state.region && this.state.date_start && this.state.date_end) {
+      fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${this.state.city}%2C+${this.state.region}&categories=${this.state.category_ids}&start_date.range_start=${this.state.date_start}T01%3A00%3A00Z&start_date.range_end=${this.state.date_end}T23%3A00%3A00Z&expand=venue&token=${EB_KEY}`)
         .then(res => res.json())
         .then(jsonData => {
           this.setState({
             filteredEvents: this.getEventsUserHasNotSeen(jsonData)})
         })
+    } else {
+      alert("City, state, and date fields must be filled out");
     }
   }
 
@@ -92,9 +88,15 @@ class EventFilterForm extends React.Component {
     })
   }
 
-  handleChangeDate = (event) => {
+  handleChangeStartDate = (event) => {
     this.setState({
-      date: event.target.value
+      date_start: event.target.value
+    })
+  }
+
+  handleChangeEndDate = (event) => {
+    this.setState({
+      date_end: event.target.value
     })
   }
 
@@ -127,68 +129,72 @@ class EventFilterForm extends React.Component {
   render() {
     console.log(this.props, this.state)
     return (
-      <div className="event-tinder">
-        <form>
-          <div id="write-in">
+      <div className="Event-List">
+        <form className="Event-Form">
+          <div>
             <h2>Find Events</h2>
-            <input className="input100" type="text" name="city" placeholder="City" value={`${this.state.city}`} onChange={this.handleChangeCity}/><br/>
-            <input className="input100" type="text" name="region" placeholder="State" value={`${this.state.region}`} onChange={this.handleChangeRegion}/><br/>
-            <input className="input100" type="date" name="date" placeholder="Date" value={`${this.state.date}`} onChange={this.handleChangeDate}/><br/>
+            <input className="event-form-input100" type="text" name="city" placeholder="City" value={`${this.state.city}`} onChange={this.handleChangeCity}/><br/>
+            <input className="event-form-input100" type="text" name="region" placeholder="State" value={`${this.state.region}`} onChange={this.handleChangeRegion}/><br/>
+            <input className="event-form-input100" type="date" name="date_start" placeholder="Date" value={`${this.state.date_start}`} onChange={this.handleChangeStartDate}/><br/>
+            <input className="event-form-input100" type="date" name="date_end" placeholder="Date" value={`${this.state.date_end}`} onChange={this.handleChangeEndDate}/><br/>
           </div>
-          <section id="free-events-only">
-            <p>Free Events Only</p>
-            <div className="slide">
-              <input id="slide1" type="checkbox" name="price" onChange={this.handleChangePrice}/><label htmlFor="slide1"></label>
+          <div className="checks">
+            <div>
+              <p className="slide-label">Travel & Outdoor</p>
+              <div className="slide">
+                <input id="slide2" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/><label htmlFor="slide2"></label>
+              </div>
+              <p className="slide-label">Food & Drink</p>
+              <div className="slide">
+                <input id="slide3" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="110"/><label htmlFor="slide3"></label>
+              </div>
+              <p className="slide-label">Music</p>
+              <div className="slide">
+                <input id="slide4" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="103"/><label htmlFor="slide4"></label>
+              </div>
+              <p className="slide-label">Networking</p>
+              <div className="slide">
+                <input id="slide9" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="101"/><label htmlFor="slide9"></label>
+              </div>
+              <div>
+                <p className="slide-label">Free Events Only</p>
+                <div className="slide">
+                  <input id="slide1" type="checkbox" name="price" onChange={this.handleChangePrice}/><label htmlFor="slide1"></label>
+                </div>
+              </div>
             </div>
-          </section>
-          <h3 className="categories">Categories</h3>
-          <section id="categories">
-            <p>Travel & Outdoor</p>
-            <div className="slide">
-              <input id="slide2" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/><label htmlFor="slide2"></label>
+            <div>
+              <p className="slide-label">Performing & Visual Arts</p>
+              <div className="slide">
+                <input id="slide5" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="105"/><label htmlFor="slide5"></label>
+              </div>
+              <p className="slide-label">Film, Media & Entertainment</p>
+              <div className="slide">
+                <input id="slide6" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="104"/><label htmlFor="slide6"></label>
+              </div>
+              <p className="slide-label">Sports & Fitness</p>
+              <div className="slide">
+                <input id="slide7" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="108"/><label htmlFor="slide7"></label>
+              </div>
+              <p className="slide-label">Health & Wellness</p>
+              <div className="slide">
+                <input id="slide8" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="107"/><label htmlFor="slide8"></label>
+              </div>
+              <div>
+                <input className="form-submit-button" type="submit" onClick={this.handleSubmit}/>
+              </div>
             </div>
-            <p>Food & Drink</p>
-            <div className="slide">
-              <input id="slide3" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="110"/><label htmlFor="slide3"></label>
-            </div>
-            <p>Music</p>
-            <div className="slide">
-              <input id="slide4" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="103"/><label htmlFor="slide4"></label>
-            </div>
-            <p>Performing & Visual Arts</p>
-            <div className="slide">
-              <input id="slide5" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="105"/><label htmlFor="slide5"></label>
-            </div>
-            <p>Film, Media & Entertainment</p>
-            <div className="slide">
-              <input id="slide6" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="104"/><label htmlFor="slide6"></label>
-            </div>
-            <p>Sports & Fitness</p>
-            <div className="slide">
-              <input id="slide7" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="108"/><label htmlFor="slide7"></label>
-            </div>
-            <p>Health & Wellness</p>
-            <div className="slide">
-              <input id="slide8" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="107"/><label htmlFor="slide8"></label>
-            </div>
-            <p>Networking</p>
-            <div className="slide">
-              <input id="slide9" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="101"/><label htmlFor="slide9"></label>
-            </div>
-            <div className="input100-submit">
-              <input className="input100 login100-form-submit" type="submit" onClick={this.handleSubmit}/>
-            </div>
-          </section>
+          </div>
         </form>
         {Array.isArray(this.state.filteredEvents) ?
-          <div>
+          <div className="Event-Form">
             {(this.state.filteredEvents.length === 0) ? <h2>We could not find any events that match your search. Please try searching something different.</h2> : <EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/>}
             {(this.state.filteredEvents.length === this.state.index && this.state.filteredEvents.length > 0) ? <h2>We could not find any more events that match your search. Please try searching something different.</h2> : null}
             {(this.state.filteredEvents.length !== 0 && this.state.filteredEvents.length > this.state.index) ?
             <div>
             <h3>Event RSVP</h3>
-              <button value="YES" onClick={this.handleRSVP} style={Yes}>YES</button>
-              <button value="NO" onClick={this.handleRSVP} style={No}>NO</button>
+              <button value="YES" onClick={this.handleRSVP} className="input100 login100-form-submit">YES</button>
+              <button value="NO" onClick={this.handleRSVP} className="input100 login100-form-submit">NO</button>
             </div> : null}
           </div>
           : null}
