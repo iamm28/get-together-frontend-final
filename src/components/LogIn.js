@@ -24,7 +24,7 @@ class LogIn extends React.Component {
   render() {
     console.log(this.props)
     if (this.props.user_id) {
-      return <Redirect exact from="/login" to="/home" />
+      return <Redirect exact from="/login" to="/your-events" />
     } else {
       return (
         <div className="login-page">

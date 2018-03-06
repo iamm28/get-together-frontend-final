@@ -16,18 +16,18 @@ const Navbar = (props) => {
         color: 'black'
       }}
       >Login</NavLink>
-    <NavLink to="/home" exact className="nav-link"
-      activeStyle={{
-        fontWeight: 'bold',
-        color: 'black'
-      }}
-      >Home</NavLink>
     <NavLink to="/profile" exact className="nav-link"
       activeStyle={{
         fontWeight: 'bold',
         color: 'black'
       }}
       >Profile</NavLink>
+    <NavLink to="/your-events" exact className="nav-link"
+      activeStyle={{
+        fontWeight: 'bold',
+        color: 'black'
+      }}
+      >Your Events</NavLink>
     <NavLink to="/find-events" exact className="nav-link"
       activeStyle={{
         fontWeight: 'bold',
@@ -40,8 +40,6 @@ const Navbar = (props) => {
 
 export default Navbar
 
-// <NavLink to="/" exact className="nav-link"
-// activeStyle={{
-//   background: "#003926"
-// }}
-// >getTogether</NavLink>
+// <NavLink to="/find-events" exact className="nav-link">
+//   <img src={require("../imgs/gettogethersc.png")} className="navbar-logo"/>
+// </NavLink>

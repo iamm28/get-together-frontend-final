@@ -13,7 +13,7 @@ class MainContainer extends Component {
       <Switch>
         <Route exact path='/login' component={ LogIn }/>
         <Route exact path='/signup' component={ SignUp }/>
-        <Route exact path='/home' component={ HomeContainer }/>
+        <Route exact path='/your-events' component={ HomeContainer }/>
         <Route exact path='/profile' component={ ProfileContainer }/>
         <Route exact path='/find-events' component={ EventTinder }/>
         <Redirect exact from="/" to="/login" />

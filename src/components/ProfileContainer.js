@@ -7,7 +7,6 @@ const ProfileContainer = (props) => {
   return (
     <div>
       <UserInfo />
-      <UserEditForm />
     </div>
   )
 }

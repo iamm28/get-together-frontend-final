@@ -132,7 +132,7 @@ class EventFilterForm extends React.Component {
       <div className="Event-List">
         <form className="Event-Form">
           <div>
-            <h2>Find Events</h2>
+            <h2 className="title">Find Events</h2>
             <input className="event-form-input100" type="text" name="city" placeholder="City" value={`${this.state.city}`} onChange={this.handleChangeCity}/><br/>
             <input className="event-form-input100" type="text" name="region" placeholder="State" value={`${this.state.region}`} onChange={this.handleChangeRegion}/><br/>
             <input className="event-form-input100" type="date" name="date_start" placeholder="Date" value={`${this.state.date_start}`} onChange={this.handleChangeStartDate}/><br/>

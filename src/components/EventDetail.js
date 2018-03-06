@@ -10,14 +10,21 @@ const EventDetail = (props) => {
     const timeInfo = formatDateAndTime(props)
     return (
       <div>
-        {(props.eventDetails.logo !== null) ? <img src={`${props.eventDetails.logo.original.url}`} style={{height: "200px"}}></img> : null}
-        <h2 dangerouslySetInnerHTML={{ __html: props.eventDetails.name.html }} />
-        <h3>{timeInfo.dates}</h3>
-        <h3>{timeInfo.start_time} - {timeInfo.end_time}</h3>
-        <h3>{props.eventDetails.venue.address.localized_multi_line_address_display.join(' ')}</h3>
-        <h3>{props.eventDetails.is_free ? "FREE":"$$"}</h3>
-        <div dangerouslySetInnerHTML={{ __html: props.eventDetails.description.html }} />
-        <GroupDetail />
+        <div className="Event-Detail">
+          <div>
+            {(props.eventDetails.logo !== null) ? <img className="event-logo" src={`${props.eventDetails.logo.original.url}`}></img> : null}
+          </div>
+          <div>
+            <h2 dangerouslySetInnerHTML={{ __html: props.eventDetails.name.html }} />
+            <h3>{timeInfo.dates}</h3>
+            <h3>{timeInfo.start_time} - {timeInfo.end_time}</h3>
+            <h3>{props.eventDetails.venue.address.localized_multi_line_address_display.join(' ')}</h3>
+            <h3>{props.eventDetails.is_free ? "FREE":"$$"}</h3>
+          </div>
+        </div>
+        <div>
+          <div className="details-format" dangerouslySetInnerHTML={{ __html: props.eventDetails.description.html }} />
+        </div>
       </div>
     )
   }
