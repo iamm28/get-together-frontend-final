@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 class UserInfo extends React.Component {
   // console.log(props.user.interests.join(', '))
   render() {
     if (!this.props.user_id) {
-      return <Redirect exact from="/profile" to="/signup"/>
+      return <Redirect exact from="/profile" to="/login"/>
     } else {
       return (
         <div>

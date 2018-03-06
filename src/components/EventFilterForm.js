@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateEventsAttending, updateEventsDetails, createRsvp, updateRsvps } from '../actions'
+import {Redirect} from 'react-router-dom'
 import {EB_KEY} from '../secrets'
 import EventDetail from './EventDetail'
 
@@ -128,6 +129,9 @@ class EventFilterForm extends React.Component {
 
   render() {
     console.log(this.props, this.state)
+    if (!this.props.user_id) {
+      return <Redirect exact from="/find-events" to="/login"/>
+    } else {
     return (
       <div className="Event-List">
         <form className="Event-Form">
@@ -181,7 +185,7 @@ class EventFilterForm extends React.Component {
                 <input id="slide8" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="107"/><label htmlFor="slide8"></label>
               </div>
               <div>
-                <input className="form-submit-button" type="submit" onClick={this.handleSubmit}/>
+                <input className="filter100 login100-form-submit" type="submit" onClick={this.handleSubmit}/>
               </div>
             </div>
           </div>
@@ -200,33 +204,19 @@ class EventFilterForm extends React.Component {
           : null}
 
       </div>
-    )
+    )}
   }
 }
 
 function mapStateToProps(state) {
   return {
     user_info: state.user_info,
-    rsvps: state.rsvps
+    rsvps: state.rsvps,
+    user_id: state.user_id
   }
 }
 
 export default connect(mapStateToProps, { updateEventsAttending, updateEventsDetails, createRsvp, updateRsvps })(EventFilterForm)
-
-const Yes = {
-  padding: '12px',
-  margin: '0 6px 6px',
-  background: 'green',
-  textDecoration: 'none',
-  color: 'white',
-}
-const No = {
-  padding: '12px',
-  margin: '0 6px 6px',
-  background: 'red',
-  textDecoration: 'none',
-  color: 'white',
-}
 
 //typeof this.state.filteredEvents !=='string' &
 // <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/>Travel & Outdoor<br/>
