@@ -103,7 +103,7 @@ class EventFilterForm extends React.Component {
   }
 
   handleChangePrice = (event) => {
-    if (event.target.checked) {
+    if (event.target.value === "free") {
       this.setState({
         price: "free"
       })
@@ -142,6 +142,11 @@ class EventFilterForm extends React.Component {
             <input className="event-form-input100" type="text" name="region" placeholder="State" value={`${this.state.region}`} onChange={this.handleChangeRegion}/><br/>
             <input className="event-form-input100" type="date" name="date_start" placeholder="Date" value={`${this.state.date_start}`} onChange={this.handleChangeStartDate}/><br/>
             <input className="event-form-input100" type="date" name="date_end" placeholder="Date" value={`${this.state.date_end}`} onChange={this.handleChangeEndDate}/><br/>
+          <select className="input100 wrap-input100" name="price" placeholder="Select One" onChange={this.handleChangePrice}>
+            <option name="price" value="">Select Budget</option>
+            <option name="price" value="">No Budget</option>
+            <option name="price" value="free">Free Events Only</option>
+          </select>
           </div>
           <div className="checks">
             <div>
@@ -161,12 +166,6 @@ class EventFilterForm extends React.Component {
               <div className="slide">
                 <input id="slide9" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="101"/><label htmlFor="slide9"></label>
               </div>
-              <div>
-                <p className="slide-label">Free Events Only</p>
-                <div className="slide">
-                  <input id="slide1" type="checkbox" name="price" onChange={this.handleChangePrice}/><label htmlFor="slide1"></label>
-                </div>
-              </div>
             </div>
             <div>
               <p className="slide-label">Performing & Visual Arts</p>
@@ -185,10 +184,10 @@ class EventFilterForm extends React.Component {
               <div className="slide">
                 <input id="slide8" type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="107"/><label htmlFor="slide8"></label>
               </div>
-              <div>
-                <input className="filter100 login100-form-submit" type="submit" onClick={this.handleSubmit}/>
-              </div>
             </div>
+          </div>
+          <div className="input100-submit">
+            <input className="filter100 login100-form-submit" type="submit" onClick={this.handleSubmit}/>
           </div>
         </form>
         {Array.isArray(this.state.filteredEvents) ?
@@ -218,6 +217,13 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { updateEventsAttending, updateEventsDetails, createRsvp, updateRsvps })(EventFilterForm)
+
+// <div>
+//   <p className="slide-label">Free Events Only</p>
+//   <div className="slide">
+//     <input id="slide1" type="checkbox" name="price" onChange={this.handleChangePrice}/><label htmlFor="slide1"></label>
+//   </div>
+// </div>
 
 //typeof this.state.filteredEvents !=='string' &
 // <input type="checkbox" name="category_ids" onChange={this.handleChangeCategories} value="109"/>Travel & Outdoor<br/>

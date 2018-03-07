@@ -45,8 +45,8 @@ class LogIn extends React.Component {
     						<i className="fa fa-lock" aria-hidden="true"></i>
     					</span>
             </div>
-            <div className="input100-submit">
-              <input className="input100 login100-form-submit" type="submit" value="Login" />
+            <div className="input100-submit"> 
+              <input className="filter100 login100-form-submit" type="submit" value="Login" />
             </div>
           </form>
         </div>

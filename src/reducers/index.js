@@ -1,4 +1,4 @@
-export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, groupDetails: [], rsvps:[], user_info:{}, user_id: undefined}, action) {
+export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, groupDetails: {}, rsvps:[], user_info:{}, user_id: undefined}, action) {
   switch (action.type) {
     case "ACCOUNT_LOADING":
       return {
@@ -43,9 +43,11 @@ export function eventsReducer(state = {events_attending: [], eventDetails: [], l
         user_id: action.payload.user.id
       }
     case "ADD_GROUP_DETAILS":
+    let newGroupDetail = {}
+    newGroupDetail[action.payload.eb_id] = action.payload.members
       return {
         ...state,
-        groupDetails: [...state.groupDetails, action.payload]
+        groupDetails: {...state.groupDetails, ...newGroupDetail}
       }
     default:
       return state;

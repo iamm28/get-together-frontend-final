@@ -6,38 +6,32 @@ const Navbar = (props) => {
     <div id="navbar">
       <NavLink to="/signup" exact className="nav-link right"
       activeStyle={{
-        fontWeight: 'bold',
-        color: 'black'
+        color: '#ffffff'
       }}
       >Sign Up</NavLink>
     <NavLink to="/login" exact className="nav-link right"
       activeStyle={{
-        fontWeight: 'bold',
-        color: 'black'
+        color: '#ffffff'
       }}
       >Login</NavLink>
     <NavLink to="/profile" exact className="nav-link"
       activeStyle={{
-        fontWeight: 'bold',
-        color: 'black'
+        color: '#ffffff'
       }}
       >Profile</NavLink>
     <NavLink to="/your-events" exact className="nav-link"
       activeStyle={{
-        fontWeight: 'bold',
-        color: 'black'
+        color: '#ffffff'
       }}
       >Your Events</NavLink>
     <NavLink to="/find-events" exact className="nav-link"
       activeStyle={{
-        fontWeight: 'bold',
-        color: 'black'
+        color: '#ffffff'
       }}
       >Find Events</NavLink>
     <NavLink to="/calendar" exact className="nav-link"
       activeStyle={{
-        fontWeight: 'bold',
-        color: 'black'
+        color: '#ffffff'
       }}
       >Calendar</NavLink>
     </div>

@@ -17,7 +17,7 @@ class EventList extends React.Component {
       <div>
         <h1 className="title">Your Events</h1>
         <div className="Event-List">
-          {this.props.events_attending.map((e,i) => {return <EventCard i={i} key={e} eb_id={e}/>})}
+          {this.props.events_attending.map((e,i) => {return <EventCard i={i} key={i} eb_id={e}/>})}
         </div>
       </div>
     )}

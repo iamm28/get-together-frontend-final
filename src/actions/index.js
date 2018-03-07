@@ -29,7 +29,7 @@ export function fetchGetGroup(eb_id,user_id) {
         let ug = eventDetails.event.user_groups.filter(g => g.group_id===group)
         let member_ids = ug.map(u_g => u_g.user_id)
         let members = eventDetails.event.users.filter(m => member_ids.includes(m.id))
-        dispatch({type:"ADD_GROUP_DETAILS", payload: members })
+        dispatch({type:"ADD_GROUP_DETAILS", payload: {eb_id, members} })
       })
     })
   }

@@ -103,10 +103,10 @@ class CalendarContainer extends React.Component {
         <div className="day" key={i+1}>
           <h3 className="day-label">{i+1}</h3>
           {todaysEvents.map(event => {return (
-            <div>
-              {event.name.text}
-              {this.formatDateAndTime(event.start.local).start_time} - {this.formatDateAndTime(event.end.local).end_time}
-            </div>
+            <div className="event">
+              <p>{this.formatDateAndTime(event.start.local).start_time} - {this.formatDateAndTime(event.end.local).end_time}</p>
+              <p>{event.name.text}</p>
+              </div>
 
           )})}
         </div>
@@ -153,6 +153,8 @@ class CalendarContainer extends React.Component {
     if (start_hours > 12) {
       start_hours = start_hours -12
       start_AMPM = "PM"
+    } else if (start_hours === 12) {
+      start_AMPM = "PM"
     } else {
       start_AMPM = "AM"
     }
@@ -160,6 +162,8 @@ class CalendarContainer extends React.Component {
     let end_AMPM
     if (end_hours > 12) {
       end_hours = end_hours -12
+      end_AMPM = "PM"
+    } else if (end_hours === 12) {
       end_AMPM = "PM"
     } else {
       end_AMPM = "AM"

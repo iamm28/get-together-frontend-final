@@ -4,21 +4,18 @@ import { connect } from 'react-redux';
 import { fetchGetGroup } from '../actions'
 
 class EventDetail extends React.Component {
-  // componentDidMount() {
-  //   if (!this.props.eventDetails) {
-  //     return null
-  //   } else {
-  //     return this.props.fetchGetGroup(parseInt(this.props.eventDetails.id),this.props.user_id)
-  //   }
-  // }
+  componentDidMount() {
+    // debugger
+    // this.props.fetchGetGroup(parseInt(this.props.eventDetails.id),this.props.user_id)
+  }
 
   render() {
     if (!this.props.eventDetails) {
       return null
     } else {
-      // debugger //maybe put in next one up
-      // const group_info = this.props.fetchGetGroup(parseInt(this.props.eventDetails.id),this.props.user_id)
-      console.log(this.props.groupDetails)
+      //this.props.fetchGetGroup(parseInt(this.props.eventDetails.id),this.props.user_id)
+      // debugger
+      // console.log(this.props.groupDetails)
       const timeInfo = this.formatDateAndTime(this.props)
       return (
         <div>
@@ -54,6 +51,8 @@ class EventDetail extends React.Component {
     if (start_hours > 12) {
       start_hours = start_hours -12
       start_AMPM = "PM"
+    } else if (start_hours === 12) {
+      start_AMPM = "PM"
     } else {
       start_AMPM = "AM"
     }
@@ -61,6 +60,8 @@ class EventDetail extends React.Component {
     let end_AMPM
     if (end_hours > 12) {
       end_hours = end_hours -12
+      end_AMPM = "PM"
+    } else if (end_hours === 12) {
       end_AMPM = "PM"
     } else {
       end_AMPM = "AM"
