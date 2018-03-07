@@ -9,7 +9,7 @@ import {Redirect} from 'react-router-dom'
 class EventList extends React.Component {
 
   render() {
-    console.log(this.props)
+    //console.log(this.props)
     if (!this.props.user_id) {
       return <Redirect exact from="/your-events" to="/login"/>
     } else {

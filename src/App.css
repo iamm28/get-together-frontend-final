@@ -248,8 +248,12 @@ body {
 
 .event-logo {
   border-radius: 10px;
-  /* width: 400px; */
-  width: 95%;
+  /* height: auto; */
+  /* max-height: 300px; */
+  height: 250px;
+  width: auto;
+  max-width: 375px;
+  /* width: 95%; */
 }
 
 .navbar-logo {

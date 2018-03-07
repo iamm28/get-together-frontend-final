@@ -11,8 +11,8 @@ class EventFilterForm extends React.Component {
     region: this.props.user_info.state,
     category_ids:[],
     price: undefined,
-    date_start: "2018-03-06",
-    date_end: "2018-03-07",
+    date_start: "2018-03-09",
+    date_end: "2018-03-11",
     filteredEvents: undefined,
     index: 0
   }
@@ -72,6 +72,7 @@ class EventFilterForm extends React.Component {
   }
 
   showNextEvent() {
+    // window.scrollTo(0,0)
     this.setState({
       index: this.state.index + 1
     })

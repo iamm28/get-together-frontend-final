@@ -20,6 +20,21 @@ export function fetchGetEventDetails(eb_id) {
   }
 }
 
+export function fetchGetGroup(eb_id,user_id) {
+  return dispatch => {
+    RestfulAdapter.indexFetch("events").then(eventData => {
+      let event=eventData.filter(e => e.eventbrite_id===eb_id)
+      RestfulAdapter.showFetch("events",event[0].id).then(eventDetails => {
+        let group = eventDetails.event.user_groups.filter(g => g.user_id===user_id)[0].group_id
+        RestfulAdapter.showFetch("groups", group).then( groupDetails =>{
+          dispatch({type:"ADD_GROUP_DETAILS", payload: groupDetails })
+        })
+        //eventDetails.event.user_groups.filter(g => g.group_id===group)
+      })
+    })
+  }
+}
+
 export function updateEventsAttending(body) {
   return dispatch => {
     RestfulAdapter.createFetch("events", body).then(eventData => {

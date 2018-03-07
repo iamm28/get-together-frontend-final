@@ -1,4 +1,4 @@
-export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, rsvps:[], user_info:{}, user_id: undefined}, action) {
+export function eventsReducer(state = {events_attending: [], eventDetails: [], loading: false, groupDetails: [], rsvps:[], user_info:{}, user_id: undefined}, action) {
   switch (action.type) {
     case "ACCOUNT_LOADING":
       return {
@@ -42,22 +42,15 @@ export function eventsReducer(state = {events_attending: [], eventDetails: [], l
         user_info: action.payload.user,
         user_id: action.payload.user.id
       }
+    case "ADD_GROUP_DETAILS":
+      return {
+        ...state,
+        groupDetails: [...state.groupDetails, action.payload.group_members]
+      }
     default:
       return state;
   }
 }
-
-// first make const initialState={} with fetch info, and replace state={} with initialState variable
-//initialState fetch to set up state with user, their groups, their events, said no to events, empty formFilter and empty rsvp
-//then update form filter and respond to rsvp with adding to events or no to events
-//need a way to have a current event to display as well
-
-//user group info
-//user filters
-//set filters
-//get more events
-//display an event
-//update events attending or not attending
 
 // export default function usersReducer(state = { email: null }, action) {
 //   switch (action.type) {
