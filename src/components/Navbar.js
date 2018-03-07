@@ -34,6 +34,12 @@ const Navbar = (props) => {
         color: 'black'
       }}
       >Find Events</NavLink>
+    <NavLink to="/calendar" exact className="nav-link"
+      activeStyle={{
+        fontWeight: 'bold',
+        color: 'black'
+      }}
+      >Calendar</NavLink>
     </div>
   )
 }

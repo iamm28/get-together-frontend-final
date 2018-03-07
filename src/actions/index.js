@@ -26,10 +26,10 @@ export function fetchGetGroup(eb_id,user_id) {
       let event=eventData.filter(e => e.eventbrite_id===eb_id)
       RestfulAdapter.showFetch("events",event[0].id).then(eventDetails => {
         let group = eventDetails.event.user_groups.filter(g => g.user_id===user_id)[0].group_id
-        RestfulAdapter.showFetch("groups", group).then( groupDetails =>{
-          dispatch({type:"ADD_GROUP_DETAILS", payload: groupDetails })
-        })
-        //eventDetails.event.user_groups.filter(g => g.group_id===group)
+        let ug = eventDetails.event.user_groups.filter(g => g.group_id===group)
+        let member_ids = ug.map(u_g => u_g.user_id)
+        let members = eventDetails.event.users.filter(m => member_ids.includes(m.id))
+        dispatch({type:"ADD_GROUP_DETAILS", payload: members })
       })
     })
   }
@@ -38,6 +38,7 @@ export function fetchGetGroup(eb_id,user_id) {
 export function updateEventsAttending(body) {
   return dispatch => {
     RestfulAdapter.createFetch("events", body).then(eventData => {
+      // dispatch({type:"ADD_GROUP_DETAILS", payload: eventData.groupDetails })
       dispatch({type:"UPDATE_EVENTS_ATTENDING", payload: eventData.eventbrite_id})
     })
   }

@@ -26,6 +26,9 @@ export class RestfulAdapter {
       headers: headers()
     }).then(res => res.json());
   }
+  // static getWithBody(route, body) {
+  //   return fetch(`${}`)
+  // }
 }
 
 //these may not be necessary, but if you're setting up a variety of get, post,

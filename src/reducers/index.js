@@ -45,7 +45,7 @@ export function eventsReducer(state = {events_attending: [], eventDetails: [], l
     case "ADD_GROUP_DETAILS":
       return {
         ...state,
-        groupDetails: [...state.groupDetails, action.payload.group_members]
+        groupDetails: [...state.groupDetails, action.payload]
       }
     default:
       return state;

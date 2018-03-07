@@ -18,7 +18,7 @@ class EventDetail extends React.Component {
     } else {
       // debugger //maybe put in next one up
       // const group_info = this.props.fetchGetGroup(parseInt(this.props.eventDetails.id),this.props.user_id)
-      // console.log(group_info)
+      console.log(this.props.groupDetails)
       const timeInfo = this.formatDateAndTime(this.props)
       return (
         <div>
@@ -38,7 +38,7 @@ class EventDetail extends React.Component {
             <div className="details-format" dangerouslySetInnerHTML={{ __html: this.props.eventDetails.description.html }} />
           </div>
           <div>
-            {/*group_info*/}
+            {}
           </div>
         </div>
       )
@@ -46,7 +46,7 @@ class EventDetail extends React.Component {
   }
 
   formatDateAndTime(props) {
-    console.log(props)
+    // console.log(props)
     const start_date = new Date(props.eventDetails.start.local).toString().split(' ').slice(0,-3).join(' ')
     const end_date = new Date(props.eventDetails.end.local).toString().split(' ').slice(0,-3).join(' ')
     let start_hours = new Date(props.eventDetails.start.local).getHours()//.toString().split(' ')[4].split('').splice(0,5).join('')
@@ -87,8 +87,8 @@ class EventDetail extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user_id: state.user_id //,
-    // groupDetails: state.groupDetails
+    user_id: state.user_id,
+    groupDetails: state.groupDetails
   }
 }
 

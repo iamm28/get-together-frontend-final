@@ -6,7 +6,7 @@ import EventDetail from './EventDetail'
 //set up match eb_id to event details id to render each one instead of using index
 class EventCard extends React.Component {
   componentDidMount() {
-    console.log("EB_ID", this.props.eb_id)
+    // console.log("EB_ID", this.props)
     this.props.fetchGetEventDetails(this.props.eb_id)
   }
 
@@ -14,7 +14,7 @@ class EventCard extends React.Component {
     //console.log(this.props)
     return (
       <div className="Event-Card">
-        <EventDetail key={this.props.eb_id} eventDetails={this.props.eventDetails[this.props.i]} />
+        <EventDetail key={this.props.eb_id} eventDetails={this.props.eventDetails[this.props.i]} /> 
       </div>
     )
   }

@@ -1,3 +1,31 @@
+/*calendar*/
+.week {
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 2px 10px;
+}
+
+.day-of-week {
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 2px 10px;
+}
+
+.day-label {
+  margin-left: 5px;
+  margin-top: 5px;
+  grid-row-start: 1;
+}
+
+.day {
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  border-collapse:collapse;
+  overflow: auto;
+  height: 130px;
+}
+
 /* colors 71AA97 478D76 267158 0E553E 003926 */
 /*267158 666666 og background*/
 /* -------other-------- */

@@ -6,6 +6,7 @@ import SignUp from './SignUp'
 import ProfileContainer from './ProfileContainer'
 import HomeContainer from './HomeContainer'
 import EventTinder from './EventTinder'
+import CalendarContainer from './CalendarContainer'
 
 class MainContainer extends Component {
   render() {
@@ -16,6 +17,7 @@ class MainContainer extends Component {
         <Route exact path='/your-events' component={ HomeContainer }/>
         <Route exact path='/profile' component={ ProfileContainer }/>
         <Route exact path='/find-events' component={ EventTinder }/>
+        <Route exact path='/calendar' component={ CalendarContainer }/>
         <Redirect exact from="/" to="/login" />
       </Switch>
     )
