@@ -28,7 +28,7 @@ class LogIn extends React.Component {
     } else {
       return (
         <div className="login-page">
-          <img src={require("../imgs/gettogethersc.png")} className="App-logo-bounce center"/>
+          <img src={require("../imgs/gettogetherfinal.png")} className="App-logo-bounce center"/>
           {this.state.error ? <h3 className="login100-form-title">Email or Password Incorrect</h3> : null}
           <form onSubmit={this.handleSubmit} className="login100-form center">
             <div className="wrap-input100">
@@ -45,7 +45,7 @@ class LogIn extends React.Component {
     						<i className="fa fa-lock" aria-hidden="true"></i>
     					</span>
             </div>
-            <div className="input100-submit"> 
+            <div className="input100-submit">
               <input className="filter100 login100-form-submit" type="submit" value="Login" />
             </div>
           </form>

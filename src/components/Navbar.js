@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 const Navbar = (props) => {
   return (
     <div id="navbar">
+      <NavLink to="/your-events" exact className="nav-link right">
+         <img src={require("../imgs/gettogetherfinal.png")} className="navbar-logo"/>
+       </NavLink>
       <NavLink to="/signup" exact className="nav-link right"
       activeStyle={{
         color: '#ffffff'

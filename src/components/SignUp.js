@@ -66,7 +66,7 @@ class SignUp extends React.Component {
             </select>
           </div>
           <div className="signup2">
-            <p>Check All Interests</p>
+            <p>Select Your Interests</p>
               <div className="checks">
                 <div>
                   <p className="slide-label">Travel & Outdoor</p>

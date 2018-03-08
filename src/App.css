@@ -43,12 +43,20 @@
   padding: 12px;
   border-radius: 5px;
   box-shadow: 3px 3px 5px #003926;
+  /* position: fixed;
+  top: 0;
+  width: 100%; */
 }
 
 .nav-link {
   margin-left: 6px;
   margin-right: 6px;
   color: #71AA97;
+}
+
+.navbar-logo {
+  height: 35px;
+  margin-bottom: 5px;
 }
 
 /* -------main-------- */
@@ -102,11 +110,57 @@ html {
   margin-left: 10px;
 }
 
+.small-profile-img{
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
 .profile-img {
   height: 200px;
   margin-left: 10px;
   margin-top: 10px;
   border-radius: 10px;
+}
+
+/* ------- sign up page --------- */
+.signup {
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+  margin-right: 30px;
+  width: 100%;
+}
+
+.signup1 {
+  margin-left: 20px;
+  width: 70%;
+}
+
+.signup2 {
+  margin-top: 50px;
+}
+.signup-submit {
+  font-family: 'Poppins';
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+
+  display: block;
+  width: 100%;
+  /* background: #267158; */
+  height: 50px;
+  border-radius: 25px;
+  border-color: #71AA97;
+  /* padding: 0 20px 0 68px; */
+  margin-top: 300px;
+  margin-right: 100px
+}
+
+.signup-page{
+  position: absolute;
+  width: 100%;
 }
 
 /* -------.slide ----------*/
@@ -179,6 +233,14 @@ html {
 }
 
 /*cards float */
+.Event-List {
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+  margin-right: 30px;
+}
+
 .Event-Card {
   /* border: 2px solid #ffffff; */
   background-color: #0E553E;
@@ -190,6 +252,27 @@ html {
   margin-left: 30px;
   box-shadow: 3px 3px 5px #003926;
 }
+.member-list{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2px 5px;
+  border: 3px solid #ffffff;
+  border-radius: 5px;
+  margin: 5px 5px 5px 5px;
+}
+/* .member{
+  border: 3px solid #ffffff;
+  border-radius: 5px;
+  height: 150px;
+} */
+/* .find-events {
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-gap: 40px;
+  margin-right: 30px;
+} */
 
 .Event-Form {
   /* border: 5px solid #003926; */
@@ -201,6 +284,26 @@ html {
   color: #ffffff;
   margin: 20px 20px 20px 20px;
   box-shadow: 3px 3px 5px #003926;
+}
+
+.possible-event {
+  height: 725px;
+  overflow: auto;
+}
+.rsvp {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2px;
+}
+
+.Event-Detail {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 5px;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2px;
 }
 
 /* colors 71AA97 478D76 267158 0E553E 003926 */
@@ -219,6 +322,81 @@ html {
   border-color: #71AA97;
   padding: 0 30px 0 68px;
   margin-top: 10px;
+}
+.rsvp-button {
+  /* margin-left: 5px; */
+  font-family: 'Poppins';
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+
+  display: block;
+  width: 100%;
+  background: #e6e6e6;
+  height: 50px;
+  border-radius: 25px;
+  border-color: #71AA97;
+  padding: 0 30px 0 68px;
+}
+.rsvp-yes {
+  font-family: 'Poppins';
+  font-size: 15px;
+  line-height: 1.5;
+  color: #267158;
+  font-weight: 1000;
+
+  width: 300px;
+  height: 50px;
+  border-radius: 25px;
+  border-color: #808080;
+  background: #71AA97;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.rsvp-yes:hover {
+  background: radial-gradient(circle, #71AA97, #267158);
+}
+.rsvp-no {
+  font-family: 'Poppins';
+  font-size: 15px;
+  line-height: 1.5;
+  color: #505050;
+  font-weight: 1000;
+
+  width: 300px;
+  height: 50px;
+  border-radius: 25px;
+  border-color: #505050;
+  background: #808080;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.rsvp-no:hover {
+  background: radial-gradient(circle, #D3D3D3, #808080);
 }
 
 .login100-form-submit {
@@ -284,65 +462,9 @@ html {
   transition: all 0.4s;
 }
 
-.signup {
-  margin-top: 10px;
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 40px;
-  margin-right: 30px;
-  width: 100%;
-}
 
-.signup1 {
-  margin-left: 20px;
-  width: 70%;
-}
-
-.signup2 {
-  margin-top: 50px;
-}
-.signup-submit {
-  font-family: 'Poppins';
-  font-size: 15px;
-  line-height: 1.5;
-  color: #666666;
-
-  display: block;
-  width: 100%;
-  /* background: #267158; */
-  height: 50px;
-  border-radius: 25px;
-  border-color: #71AA97;
-  /* padding: 0 20px 0 68px; */
-  margin-top: 300px;
-  margin-right: 100px
-}
-
-.signup-page{
-  position: absolute;
-  width: 100%;
-}
-
-.Event-List {
-  margin-top: 10px;
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 40px;
-  margin-right: 30px;
-}
-
-.Event-Detail {
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 5px;
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2px;
-}
 
 /*71AA97 478D76 267158 0E553E 003926*/
-
-
 .event-form-input100 {
   font-family: 'Poppins';
   font-size: 15px;
@@ -369,9 +491,7 @@ html {
   /* width: 95%; */
 }
 
-.navbar-logo {
-  height: 30px;
-}
+
 
 .details-format {
   font-family: 'Poppins';
@@ -384,7 +504,7 @@ html {
 
 /* ----- logo ------*/
 .App-logo-bounce {
-  height: 300px;
+  height: 400px;
   animation-name: bounceIn;
   animation-duration: 2s;
   animation-iteration-count: 1;

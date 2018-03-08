@@ -13,13 +13,24 @@ class EventCard extends React.Component {
   }
 
   render() {
-    console.log(this.props.groupDetails)
+
     const cardDetails = this.props.eventDetails.map(details => {return <EventDetail key={this.props.eb_id} eventDetails={details}/>})
-    const members = this.props.groupDetails.map(member => {return <div>{member.first_name}</div>})
+    const members = this.props.groupDetails.map(member =>
+      {return (
+        <div className="member">
+          <img src={require("../imgs/profile-image.png")} className="small-profile-img"/><br/>
+          <text>{member.first_name} - {member.age}</text><br/>
+          <text>{member.city}, {member.state}</text>
+        </div>
+      )}
+    )
+
     return (
       <div className="Event-Card">
+        <div className="member-list">
+          {members.length < 2 ? <div className="member">Waiting for new friends to join your group</div> : members}
+        </div>
         {cardDetails}
-        {members}
       </div>
     )
   }

@@ -34,9 +34,6 @@ class EventDetail extends React.Component {
           <div>
             <div className="details-format" dangerouslySetInnerHTML={{ __html: this.props.eventDetails.description.html }} />
           </div>
-          <div>
-            {}
-          </div>
         </div>
       )
     }

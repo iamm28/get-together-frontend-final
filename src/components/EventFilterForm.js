@@ -11,8 +11,8 @@ class EventFilterForm extends React.Component {
     region: this.props.user_info.state,
     category_ids:[],
     price: undefined,
-    date_start: "2018-03-09",
-    date_end: "2018-03-11",
+    date_start: undefined,
+    date_end: undefined,
     filteredEvents: undefined,
     index: 0
   }
@@ -142,9 +142,9 @@ class EventFilterForm extends React.Component {
             <input className="event-form-input100" type="text" name="region" placeholder="State" value={`${this.state.region}`} onChange={this.handleChangeRegion}/><br/>
             <input className="event-form-input100" type="date" name="date_start" placeholder="Date" value={`${this.state.date_start}`} onChange={this.handleChangeStartDate}/><br/>
             <input className="event-form-input100" type="date" name="date_end" placeholder="Date" value={`${this.state.date_end}`} onChange={this.handleChangeEndDate}/><br/>
-          <select className="input100 wrap-input100" name="price" placeholder="Select One" onChange={this.handleChangePrice}>
-            <option name="price" value="">Select Budget</option>
-            <option name="price" value="">No Budget</option>
+          <select className="input100 wrap-input100" name="price" onChange={this.handleChangePrice}>
+            <option name="price" value="">Price Range</option>
+            <option name="price" value="">All Events</option>
             <option name="price" value="free">Free Events Only</option>
           </select>
           </div>
@@ -187,18 +187,21 @@ class EventFilterForm extends React.Component {
             </div>
           </div>
           <div className="input100-submit">
-            <input className="filter100 login100-form-submit" type="submit" onClick={this.handleSubmit}/>
+            <input className="filter100 login100-form-submit center" type="submit" onClick={this.handleSubmit}/>
           </div>
         </form>
         {Array.isArray(this.state.filteredEvents) ?
           <div className="Event-Form">
-            {(this.state.filteredEvents.length === 0) ? <h2>We could not find any events that match your search. Please try searching something different.</h2> : <EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/>}
+            {(this.state.filteredEvents.length === 0) ? <h2>We could not find any events that match your search. Please try searching something different.</h2> : <div className="possible-event"><EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/></div>}
             {(this.state.filteredEvents.length === this.state.index && this.state.filteredEvents.length > 0) ? <h2>We could not find any more events that match your search. Please try searching something different.</h2> : null}
             {(this.state.filteredEvents.length !== 0 && this.state.filteredEvents.length > this.state.index) ?
-            <div>
-            <h3>Event RSVP</h3>
-              <button value="YES" onClick={this.handleRSVP} className="input100 login100-form-submit">YES</button>
-              <button value="NO" onClick={this.handleRSVP} className="input100 login100-form-submit">NO</button>
+            <div className="rsvp">
+              <div>
+                <button value="YES" onClick={this.handleRSVP} className="rsvp-yes rsvp-button center">YES</button>
+              </div>
+              <div>
+                <button value="NO" onClick={this.handleRSVP} className="rsvp-no rsvp-button center">NO</button>
+              </div>
             </div> : null}
           </div>
           : null}
