@@ -57,6 +57,7 @@
 .navbar-logo {
   height: 35px;
   margin-bottom: 5px;
+  margin-top: 2px;
 }
 
 /* -------main-------- */
@@ -81,6 +82,10 @@ html {
 }
 
 /* --------placement------- */
+.submit-center {
+  display: block;
+  margin-left: 120px;
+}
 .center {
     display: block;
     margin-left: auto;
@@ -256,6 +261,9 @@ html {
   display:grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2px 5px;
+  margin: 5px 5px 5px 5px;
+}
+.member-container {
   border: 3px solid #ffffff;
   border-radius: 5px;
   margin: 5px 5px 5px 5px;

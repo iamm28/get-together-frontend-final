@@ -137,7 +137,7 @@ class EventFilterForm extends React.Component {
       <div className="Event-List">
         <form className="Event-Form">
           <div>
-            <h2 className="title">Find Events</h2>
+            <h2 className="title">FIND EVENTS</h2>
             <input className="event-form-input100" type="text" name="city" placeholder="City" value={`${this.state.city}`} onChange={this.handleChangeCity}/><br/>
             <input className="event-form-input100" type="text" name="region" placeholder="State" value={`${this.state.region}`} onChange={this.handleChangeRegion}/><br/>
             <input className="event-form-input100" type="date" name="date_start" placeholder="Date" value={`${this.state.date_start}`} onChange={this.handleChangeStartDate}/><br/>
@@ -187,13 +187,13 @@ class EventFilterForm extends React.Component {
             </div>
           </div>
           <div className="input100-submit">
-            <input className="filter100 login100-form-submit center" type="submit" onClick={this.handleSubmit}/>
+            <input className="filter100 login100-form-submit submit-center" type="submit" onClick={this.handleSubmit}/>
           </div>
         </form>
         {Array.isArray(this.state.filteredEvents) ?
           <div className="Event-Form">
-            {(this.state.filteredEvents.length === 0) ? <h2>We could not find any events that match your search. Please try searching something different.</h2> : <div className="possible-event"><EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/></div>}
-            {(this.state.filteredEvents.length === this.state.index && this.state.filteredEvents.length > 0) ? <h2>We could not find any more events that match your search. Please try searching something different.</h2> : null}
+            {(this.state.filteredEvents.length === 0) ? <h2 className="title">We could not find any events that match your search. Please try searching something different.</h2> : <div className="possible-event"><EventDetail key={this.state.index} eventDetails={this.getCurrentEvent()}/></div>}
+            {(this.state.filteredEvents.length === this.state.index && this.state.filteredEvents.length > 0) ? <h2 className="title">We could not find any more events that match your search. Please try searching something different.</h2> : null}
             {(this.state.filteredEvents.length !== 0 && this.state.filteredEvents.length > this.state.index) ?
             <div className="rsvp">
               <div>

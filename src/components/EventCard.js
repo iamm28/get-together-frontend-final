@@ -7,13 +7,14 @@ import EventDetail from './EventDetail'
 class EventCard extends React.Component {
   componentDidMount() {
     // console.log("EB_ID", this.props)
-    console.log(this.props.eb_id)
-    this.props.fetchGetEventDetails(this.props.eb_id)
-    this.props.fetchGetGroup(this.props.eb_id,this.props.user_id)
+    if (this.props.eventDetails.length === 0) {
+      this.props.fetchGetEventDetails(this.props.eb_id)
+      this.props.fetchGetGroup(this.props.eb_id,this.props.user_id)
+    }
   }
 
   render() {
-
+    console.log(this.props.eventDetails.length)
     const cardDetails = this.props.eventDetails.map(details => {return <EventDetail key={this.props.eb_id} eventDetails={details}/>})
     const members = this.props.groupDetails.map(member =>
       {return (
@@ -27,8 +28,11 @@ class EventCard extends React.Component {
 
     return (
       <div className="Event-Card">
-        <div className="member-list">
-          {members.length < 2 ? <div className="member">Waiting for new friends to join your group</div> : members}
+        <div className="member-container">
+          <div className="title">YOUR GET-TOGETHER</div>
+          <div className="member-list">
+            {members.length < 2 ? <div className="title">Waiting for more attendees</div> : members}
+          </div>
         </div>
         {cardDetails}
       </div>
