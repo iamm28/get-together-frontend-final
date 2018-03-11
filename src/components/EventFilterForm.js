@@ -145,7 +145,8 @@ class EventFilterForm extends React.Component {
           <select className="input100 wrap-input100" name="price" onChange={this.handleChangePrice}>
             <option name="price" value="">Price Range</option>
             <option name="price" value="">All Events</option>
-            <option name="price" value="free">Free Events Only</option>
+            <option name="price" value="
+              ">Free Events Only</option>
           </select>
           </div>
           <div className="checks">
