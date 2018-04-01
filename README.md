@@ -3,7 +3,7 @@
 ## Overview
 A web application designed to facilitate new connections among users based on shared interest in attending local events.
 
-The front end is made with JS library React [Create React App](https://github.com/facebookincubator/create-react-app)
+The front end is made with JS library React - [Create React App](https://github.com/facebookincubator/create-react-app)
 
 The back end can be found here https://github.com/iamm28/get-together-backend
 
