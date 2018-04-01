@@ -18,7 +18,7 @@ The user must log in or sign up and will be directed to the home page which disp
 The user can also view the events on a calendar. The user can find more events by entering a date range and budget and it will search Eventbrite for events that fit.
 The events then appear one at a time with details so the user can decide if they want to go or not. Instead of swiping yes or no to people on a mobile app, this allows you to click yes or no to events.
 
-# Installation 
+## Installation 
 First, ensure that you have the back end up and running: https://github.com/iamm28/get-together-backend
 
 1. Clone down to your computer. 
@@ -26,7 +26,7 @@ First, ensure that you have the back end up and running: https://github.com/iamm
 3. Enter "npm install"
 4. After installation is complete, enter "npm start"
 
-# Contributing 
+## Contributing 
 1. Fork it!
 2. Create your feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
@@ -39,7 +39,7 @@ Alison Mackay | alison.mackay@flatironschool.com
 ## Acknowledgments
 Thank you to my classmates and instructors at the Flatiron School.
 
-# License 
+## License 
 The MIT License (MIT)
 
 Copyright (c) 2018 Alison Mackay
